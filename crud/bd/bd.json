@@ -1,0 +1,132 @@
+[
+    {
+        "id": 1,
+        "categoria": "clases",
+        "img": "../../assets/images/gap.webp",
+        "title": "GAP",
+        "desc": "Entrenamiento de glúteos, abdominales y piernas.",
+        "time": "45 min",
+        "precio": 3000,
+        "act": "Inscribirse"
+    },
+    {
+        "id": 2,
+        "categoria": "clases",
+        "img": "../../assets/images/crossfit.webp",
+        "title": "Crossfit",
+        "desc": "Ejercicio de alta intensidad que combina levantamiento de pesas y gimnasia",
+        "time": "60 min",
+        "precio": 3000,
+        "act": "Inscribirse"
+    },
+    {
+        "id": 3,
+        "categoria": "clases",
+        "img": "../../assets/images/funcional.webp",
+        "title": "Funcional",
+        "desc": "Cardio intensivo que busca mejorar tu fuerza y resistencia",
+        "time": "60 min",
+        "precio": 2500,
+        "act": "Inscribirse"
+    },
+    {
+        "id": 4,
+        "categoria": "clases",
+        "img": "../../assets/images/zumba.webp",
+        "title": "Zumba",
+        "desc": "Una forma de ejercicio que se enfoca en la diversión y la energía.",
+        "time": "45 min",
+        "precio": 2500,
+        "act": "Inscribirse"
+    },
+    {
+        "id": 5,
+        "categoria": "clases",
+        "img": "../../assets/images/bachata.webp",
+        "title": "Bachata",
+        "desc": "Una introducción al apasionante mundo de la danza latina.",
+        "time": "50 min",
+        "precio": 2500,
+        "act": "Inscribirse"
+    },
+    {
+        "id": 6,
+        "categoria": "clases",
+        "img": "../../assets/images/salsa.webp",
+        "title": "Salsa",
+        "desc": "Una experiencia dinámica y divertida que te sumerge en el ritmo de la música latina.",
+        "time": "60 min",
+        "precio": 2500,
+        "act": "Inscribirse"
+    },
+    {
+        "id": 7,
+        "categoria": "producto",
+        "img": "../../assets/images/proteina.webp",
+        "title": "Proteína",
+        "desc": "Sumplemento deportivo para ganar esa masa muscular que tanto deseas.",
+        "precio": 15000,
+        "act": "Comprar"
+    },
+    {
+        "id": 8,
+        "categoria": "producto",
+        "img": "../../assets/images/creatina.webp",
+        "title": "Creatina",
+        "desc": "Sustancia natural que ayuda a los músculos a producir energía",
+        "precio": 12000,
+        "act": "Comprar"
+    },
+    {
+        "id": 9,
+        "categoria": "producto",
+        "img": "../../assets/images/gel.webp",
+        "title": "Gel energetico",
+        "desc": "Para un aporte rápido de carbohidratos durante entrenamientos de larga duración.",
+        "precio": 5000,
+        "act": "Comprar"
+    },
+    {
+        "id": 10,
+        "categoria": "ropa",
+        "img": "../../assets/images/zapas.webp",
+        "title": "Zapatillas",
+        "desc": "Zapatillas deportivas para hacer tus actividades favoritas.",
+        "precio": 25000,
+        "act": "Comprar"
+    },
+    {
+        "id": 11,
+        "categoria": "ropa",
+        "img": "../../assets/images/musculosa.webp",
+        "title": "Musculosa",
+        "desc": "Musculosa para entrenamiento de alto impacto.",
+        "precio": 20000,
+        "act": "Comprar"
+    },
+        {
+        "id": 12,
+        "categoria": "categoria",
+        "img": "../../assets/images/clase.webp",
+        "title": "Clases",
+        "desc": "Funcional, GAP, Salsa, Crossfit, Bachata y más.",
+        "href": "clases/clases.html"
+    },
+        {
+        "id": 13,
+        "categoria": "categoria",
+        "img": "../../assets/images/suplementos.webp",
+        "title": "Productos alimenticios",
+        "desc": "Proteínas, creatina, pre-entrenos y más suplementos.",
+        "href": "productos/productos.html"
+    },
+        {
+        "id": 14,
+        "categoria": "categoria",
+        "img": "../../assets/images/ropa.webp",
+        "title": "Ropa deportiva",
+        "desc": "Ropa cómoda, funcional y con estilo para entrenar.",
+        "href": "ropa/ropa.html"
+    }
+
+]
