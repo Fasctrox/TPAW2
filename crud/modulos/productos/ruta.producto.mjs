@@ -7,14 +7,14 @@ const RUTA_BASE = '/api/v1/productos'
 
 const rutasProductos = new express.Router()
 
-rutasProductos.get(RUTA_BASE, controlador.obtenerProductos)
+rutasProductos.get(RUTA_BASE, controlador.obtenerDatos)
 
-rutasProductos.get(RUTA_BASE + '/:id', controlador.obtenerProducto)
+rutasProductos.get(RUTA_BASE + '/:id', controlador.obtenerDato)
 
-rutasProductos.post(RUTA_BASE, chequearDatosProductos, controlador.altaProducto)
+rutasProductos.post(RUTA_BASE, chequearDatosProductos, controlador.darAlta)
 
-rutasProductos.put(RUTA_BASE + '/:id', controlador.modificarProducto)
+rutasProductos.put(RUTA_BASE + '/:id', controlador.modificar)
 
-rutasProductos.delete(RUTA_BASE + '/:id', controlador.eliminarProductos)
+rutasProductos.delete(RUTA_BASE + '/:id', controlador.eliminar)
 
 export default rutas
