@@ -1,12 +1,5 @@
-import express from 'express'
-import rutas from './crud/modulos/productos/ruta.producto.mjs'
+import pool from './db.mjs'
 
-const app = express()
-const PUERTO = 3000
+const res = await pool.query('SELECT * FROM productos')
 
-app.listen(PUERTO, ()=>{
-    console.log(`Servidor ejecutandose en http://localhost:${PUERTO}`)
-})
-
-app.use(express.json()) //Siempre arriba
-app.use(rutas)
+console.log(res.rows)
