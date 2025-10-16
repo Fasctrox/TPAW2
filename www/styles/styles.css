@@ -1,0 +1,85 @@
+.img-fixed {
+  height: 300px;
+  object-fit: cover;
+}
+
+:root {
+  --primary-color: #C0392B;
+  --primary-hover: #E74C3C;
+  --background-color: #FAFAFA;
+  --text-color: #333333;
+  --card-bg: #FFFFFF;
+  --card-border: #DDD;
+}
+
+body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin-bottom: 0;
+}
+
+main{
+  flex: 1;
+}
+
+
+
+.navbar {
+  background-color: var(--primary-color) !important;
+}
+
+.navbar .nav-link,
+.navbar .navbar-brand {
+  color: white !important;
+}
+
+.navbar .nav-link:hover {
+  color: var(--primary-hover) !important;
+}
+
+
+.btn-danger {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-danger:hover {
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
+}
+
+
+footer {
+  background-color: #4b729e;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  margin-top: 40px;
+  flex-shrink: 0;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/*Estilo para los formularios*/
+
+.form-container {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: white;
+  border: 1px solid #DDD;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+}

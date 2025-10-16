@@ -1,5 +1,20 @@
-import pool from './db.mjs'
+import express from 'express'
+import pool from './config/db.mjs'
 
-const res = await pool.query('SELECT * FROM productos')
+const PUERTO = 3000
 
-console.log(res.rows)
+const app = express()
+
+app.listen(PUERTO, () => {
+    console.log('Servidor corriendo')
+})
+
+app.get('/productos', async (req, res) => {
+    const resultado = await pool.query('SELECT * FROM producto')
+    const productos = resultado.rows
+    res.json(productos)
+})
+
+app.use((req, res) => {
+    res.status(404).json({ mensaje: 'Recurso no encontrado' })
+})

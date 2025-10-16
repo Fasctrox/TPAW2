@@ -1,5 +1,5 @@
 FROM postgres:latest
 
-COPY fitStore.sql /docker-entrypoint-initdb.d/
+COPY fitstore.sql /docker-entrypoint-initdb.d/
 
 EXPOSE 5432

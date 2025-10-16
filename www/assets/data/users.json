@@ -1,0 +1,45 @@
+[
+    {
+        "name": "Usuario1",
+        "lastname":"Apellido1",
+        "pass":"pass1",
+        "email":"usuario1@example.com",
+        "foto": "/assets/images/perfil.webp"
+    },
+    {
+        "name": "Usuario2",
+        "lastname":"Apellido2",
+        "pass":"pass2",
+        "email":"usuario2@example.com",
+        "foto": "/assets/images/perfil.webp"
+    },
+    {
+        "name": "Usuario3",
+        "lastname":"Apellido3",
+        "pass":"pass3",
+        "email":"usuario3@example.com",
+        "foto": "/assets/images/perfil.webp"
+    },
+    {
+        "name": "Usuario4",
+        "lastname":"Apellido4",
+        "pass":"pass4",
+        "email":"usuario4@example.com",
+        "foto": "/assets/images/perfil.webp"
+    },
+    {
+        "name": "Usuario5",
+        "lastname":"Apellido5",
+        "pass":"pass5",
+        "email":"usuario5@example.com",
+        "foto": "/assets/images/perfil.webp"
+    },
+    {
+        "name": "Usuario6",
+        "lastname":"Apellido6",
+        "pass":"pass6",
+        "email":"usuario6@example.com",
+        "foto": "/assets/images/perfil.webp"
+    }
+
+]
