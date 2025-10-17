@@ -1,7 +1,6 @@
 //Enrutamieto de los endpoints
 import express from 'express'
 import * as controlador from './controlador.producto.mjs'
-//import { chequearDatosProductos } from './utils.mjs'
 
 const RUTA_BASE = '/productos'
 

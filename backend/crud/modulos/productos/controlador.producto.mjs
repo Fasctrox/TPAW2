@@ -4,7 +4,7 @@ export async function obtenerDatos(req, res) {
 
     try {
 
-        const productos = await modelo.obtenerProducto()
+        const productos = await modelo.obtenerProductos()
 
         if (productos.length > 0) {
             res.json(productos)
@@ -18,7 +18,24 @@ export async function obtenerDatos(req, res) {
 
 }
 
-export async function obtenerDato() {
+export async function obtenerDato(req, res) {
+
+    const id = req.params.id
+    
+    try {
+        
+        const producto = await modelo.obtenerProducto(id);
+
+        if(producto){
+            res.json(producto)
+        }else{
+            res.status(404).json({mensaje: 'Producto no encontrado'})
+        }
+
+    } catch (e) {
+        console.log(e)
+        res.status(500).json({mensaje: 'Error del servidor'})
+    }
 
 }
 
@@ -26,7 +43,7 @@ export async function darAlta(req, res) {
 
     const datosNuevoProducto = req.body
 
-    if (!datosNuevoProducto.img || !datosNuevoProducto.title || !datosNuevoProducto.descripcion || !datosNuevoProducto.precio) {
+    if (!datosNuevoProducto.img || !datosNuevoProducto.title || !datosNuevoProducto.descripcion || !datosNuevoProducto.precio || !datosNuevoProducto.categoria_id) {
         res.status(400).json({mensaje: 'Datos incompletos!'})
     }
 
