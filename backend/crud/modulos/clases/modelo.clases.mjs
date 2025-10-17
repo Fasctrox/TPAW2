@@ -1,13 +1,13 @@
 import pool from '../../../config/db.mjs'
 
 
-export async function obtenerProductos() {
+export async function obtenerClases() {
 
     try {
 
-        const resultado = await pool.query('SELECT * FROM producto')
-        const productos = resultado.rows
-        return productos;
+        const resultado = await pool.query('SELECT * FROM clases')
+        const clases = resultado.rows
+        return clases;
 
     } catch (e) {
 
@@ -18,12 +18,12 @@ export async function obtenerProductos() {
 
 }
 
-export async function obtenerProducto(id) {
+export async function obtenerClase(id) {
 
     try {
         
         const resultado = await pool.query(
-            `SELECT * FROM producto WHERE id = $1`,
+            `SELECT * FROM clases WHERE id = $1`,
             [id]
         )
 
@@ -36,18 +36,18 @@ export async function obtenerProducto(id) {
 
 }
 
-export async function altaProducto(datosProducto) {
+export async function altaClase(datosClase) {
 
     //Datos del producto <------ ya deben estar los datos chequeados
-    const { img, title, descripcion, precio, categoria_id } = datosProducto
+    const { img, title, descripcion, tiempo, precio } = datosClase
 
     try {
 
         const resultado = await pool.query(
             `INSERT INTO 
-                producto(img, title, descripcion, precio, categoria_id) 
+                clases(img, title, descripcion, tiempo, precio) 
             VALUES($1, $2, $3, $4, $5) RETURNING id`,
-            [img, title, descripcion, precio, categoria_id]
+            [img, title, descripcion, tiempo, precio]
         )
 
         return resultado.rows
@@ -59,22 +59,22 @@ export async function altaProducto(datosProducto) {
 
 }
 
-export async function modificarProducto(id, datos) {
+export async function modificarClase(id, datos) {
 
     try {
         
-        const {img, title, descripcion, precio, categoria_id} = datos
+        const {img, title, descripcion, tiempo, precio} = datos
 
         const resultado = await pool.query(
-            `UPDATE producto 
+            `UPDATE clases 
                 SET img = $1,
                     title = $2,
                     descripcion = $3,
-                    precio = $4,
-                    categoria_id = $5
+                    tiempo = $4,
+                    precio = $5
                 WHERE id = $6
                 RETURNING id`,
-                [img, title, descripcion, precio, categoria_id, id]
+                [img, title, descripcion, tiempo, precio, id]
         )
 
         return resultado.rows
@@ -88,12 +88,12 @@ export async function modificarProducto(id, datos) {
 
 }
 
-export async function eliminarProductos(id) {
+export async function eliminarClase(id) {
 
     try {
         
         const resultado = pool.query(
-            `DELETE FROM producto WHERE id = $1 RETURNING id`,
+            `DELETE FROM clases WHERE id = $1 RETURNING id`,
             [id]
         )
 

@@ -1,15 +1,15 @@
-import * as modelo from "./modelo.producto.mjs"
+import * as modelo from "./modelo.clases.mjs"
 
 export async function obtenerDatos(req, res) {
 
     try {
 
-        const productos = await modelo.obtenerProductos()
+        const clases = await modelo.obtenerClases()
 
-        if (productos.length > 0) {
-            res.json(productos)
+        if (clases.length > 0) {
+            res.json(clases)
         } else {
-            res.status(400).json({ mensaje: 'No se encontro' })
+            res.status(400).json({ mensaje: 'No se encontro las clases' })
         }
 
     } catch (e) {
@@ -24,12 +24,12 @@ export async function obtenerDato(req, res) {
 
     try {
 
-        const producto = await modelo.obtenerProducto(id);
+        const clase = await modelo.obtenerClase(id);
 
-        if (producto) {
-            res.json(producto)
+        if (clase) {
+            res.json(clase)
         } else {
-            res.status(404).json({ mensaje: 'Producto no encontrado' })
+            res.status(404).json({ mensaje: 'Clase no encontrada' })
         }
 
     } catch (e) {
@@ -41,17 +41,17 @@ export async function obtenerDato(req, res) {
 
 export async function darAlta(req, res) {
 
-    const datosNuevoProducto = req.body
+    const datosNuevaClase = req.body
 
-    if (!datosNuevoProducto.img || !datosNuevoProducto.title || !datosNuevoProducto.descripcion || !datosNuevoProducto.precio || !datosNuevoProducto.categoria_id) {
+    if (!datosNuevaClase.img || !datosNuevaClase.title || !datosNuevaClase.descripcion || !datosNuevaClase.tiempo || !datosNuevaClase.precio) {
         res.status(400).json({ mensaje: 'Datos incompletos!' })
     }
 
     try {
 
-        const nuevoProducto = await modelo.altaProducto(datosNuevoProducto)
-        console.log(nuevoProducto)
-        res.status(201).json({ mensaje: 'El producto fue dado de alta', producto: nuevoProducto })
+        const nuevaClase = await modelo.altaClase(datosNuevaClase)
+        console.log(nuevaClase)
+        res.status(201).json({ mensaje: 'La clase fue dada de alta', producto: nuevaClase })
 
     } catch (e) {
         console.log(e)
@@ -66,10 +66,10 @@ export async function modificar(req, res) {
 
     try {
 
-        const productoActualizado = await modelo.modificarProducto(id, datos);
+        const claseActualizada = await modelo.modificarClase(id, datos);
 
-        if (productoActualizado) {
-            res.json(productoActualizado)
+        if (claseActualizada) {
+            res.json(claseActualizada)
         } else {
             res.status(404).json({ mensaje: 'Producto no encontrado' })
         }
@@ -87,8 +87,8 @@ export async function eliminar(req, res) {
 
     try {
 
-        const productoEliminado = await modelo.eliminarProductos(id)
-        res.json({ mensaje: 'Producto eliminado!', productoEliminado })
+        const claseEliminada = await modelo.eliminarClase(id)
+        res.json({ mensaje: 'clase eliminada!', claseEliminada })
 
 
     } catch (e) {
