@@ -6,7 +6,7 @@ export const cardProductComponent = (data) => {
                 <div class="card-body d-flex flex-column justify-content-between">
                     <div>
                         <h5 class="card-title">${data.title}</h5>
-                        <p class="card-text">${data.desc}</p>
+                        <p class="card-text">${data.descripcion}</p>
                         <p class="fw-bold">$${data.precio}</p>
                     </div>
 
