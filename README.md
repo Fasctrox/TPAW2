@@ -49,7 +49,6 @@ Podés acceder al panel de administración con las siguientes credenciales:
 - **Contraseña:** pass1
 
 ## 📡 Endpoints principales
-## 📡 Endpoints principales
 
 | Método | Ruta | Descripción |
 |:-------|:------|:-------------|
