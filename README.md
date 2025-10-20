@@ -43,10 +43,18 @@ Cuenta con un **sitio público** donde los usuarios pueden ver los productos y u
    ```bash
    npm run dev
 
-## 🔑 Usuario de prueba
+## 👥 Usuario de prueba
 Podés acceder al panel de administración con las siguientes credenciales:
-- **Usuario:** usuario1@example.com
-- **Contraseña:** pass1
+
+| Nombre | Email | Contraseña |
+|:--------|:------------------------|:------------|
+| Usuario1 | usuario1@example.com | pass1 |
+| Usuario2 | usuario2@example.com | pass2 |
+| Usuario3 | usuario3@example.com | pass3 |
+| Usuario4 | usuario4@example.com | pass4 |
+| Usuario5 | usuario5@example.com | pass5 |
+| Usuario6 | usuario6@example.com | pass6 |
+
 
 ## 📡 Endpoints principales
 
