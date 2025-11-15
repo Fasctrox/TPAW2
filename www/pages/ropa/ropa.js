@@ -7,57 +7,38 @@ let cardProductContainer = document.getElementById('cardProductContainer')
 window.addEventListener('DOMContentLoaded', async () => {
     try {
         document.getElementById('searchBarContainer').innerHTML = searchBarComponent;
-        const response = await fetch('../../assets/data/product.json')
-        const productosData = await response.json();
 
-        const cards = productosData
-            .filter(producto => producto.categoria === 'ropa') // solo productos comprables
-            .map(producto => cardProductComponent(producto))
-            .join('');
+        const response = await fetch('/fitstore/productos')
+        if (!response.ok) throw new Error('Error al obtener productos')
 
-        cardProductContainer.innerHTML = cards;
+        const productosData = await response.json()
 
-        // NUEVO: listeners para botones de agregar
-        productosData
-            .filter(producto => producto.categoria === 'ropa')
-            .forEach(producto => {
-                const btn = document.getElementById(`add-${producto.id}`)
-                if (btn) {
-                    btn.addEventListener('click', () => {
-                        addToCart(producto.id);
-                    })
-                }
-            })
+        const productos = productosData.filter(p => p.categoria_id === 3)
+
+        const cards = productos.map(p => cardProductComponent(p)).join('')
+        cardProductContainer.innerHTML = cards
+
+        productos.forEach(p => {
+            const btn = document.getElementById(`add-${p.id}`)
+            if (btn) {
+                btn.addEventListener('click', () => addToCart(p.id))
+            }
+        })
 
         //Barra de busqueda
         const searchInput = document.getElementById('searchInput')
-
         searchInput.addEventListener('input', () => {
-            const query = searchInput.value.toLowerCase();
-            const container = document.getElementById('cardProductContainer')
-            container.innerHTML = '';
+            const query = searchInput.value.toLowerCase()
+            const filtered = productos.filter(p => p.title.toLowerCase().includes(query))
+            cardProductContainer.innerHTML = filtered.map(p => cardProductComponent(p)).join('')
 
-            const filteredProducts = productosData
-                .filter(producto => 
-                    producto.categoria === 'ropa' &&
-                    producto.title.toLowerCase().includes(query)
-                );
-
-            const cards = filteredProducts
-                .map(producto => cardProductComponent(producto))
-                .join('');
-
-            container.innerHTML = cards;
-
-            filteredProducts.forEach(producto => {
-                const btn = document.getElementById(`add-${producto.id}`)
+            filtered.forEach(p => {
+                const btn = document.getElementById(`add-${p.id}`)
                 if (btn) {
-                    btn.addEventListener('click', () => {
-                        addToCart(producto.id);
-                    });
+                    btn.addEventListener('click', () => addToCart(p.id))
                 }
-            });
-        });
+            })
+        })
 
     } catch (e) {
         console.error('Error al cargar los productos:', e)

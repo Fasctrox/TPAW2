@@ -7,53 +7,33 @@ let cardClassContainer = document.getElementById('cardClassContainer')
 window.addEventListener('DOMContentLoaded', async () => {
     try {
         document.getElementById('searchBarContainer').innerHTML = searchBarComponent;
-        const response = await fetch('../../assets/data/product.json')
-        const productosData = await response.json()
 
-        const cards = productosData
-            .filter(producto => producto.categoria === 'clases')
-            .map(producto => cardClassComponent(producto))
-            .join('');
+        const response = await fetch('/fitstore/clases')
+        if(!response.ok) throw new Error('Error al obtener la clase')
 
+        const clasesData = await response.json()
+
+        const cards = clasesData.map(c => cardClassComponent(c)).join('');
         cardClassContainer.innerHTML = cards
         
-        productosData
-            .filter(producto => producto.categoria === 'clases')
-            .forEach(producto => {
-                const btn = document.getElementById(`insc-${producto.id}`)
-                if (btn) {
-                    btn.addEventListener('click', () => {
-                        inscribirClase(producto.id)
-                    })
-                }
-            })
+        clasesData.forEach(p => {
+            const btn = document.getElementById(`insc-${p.id}`)
+            if (btn) {
+                btn.addEventListener('click', () => inscribirClase(p.id))
+            }
+        })
 
         //Barra de busqueda
         const searchInput = document.getElementById('searchInput')
-
         searchInput.addEventListener('input', () => {
             const query = searchInput.value.toLowerCase()
-            const container = document.getElementById('cardClassContainer')
-            container.innerHTML = ''
+            const filtered = clasesData.filter(c => c.title.toLowerCase().includes(query))
+            cardClassContainer.innerHTML = filtered.map(c => cardClassComponent(c)).join('')
 
-            const filteredProducts = productosData
-                .filter(producto => 
-                    producto.categoria === 'clases' &&
-                    producto.title.toLowerCase().includes(query)
-                )
-
-            const cards = filteredProducts
-                .map(producto => cardClassComponent(producto))
-                .join('')
-
-            container.innerHTML = cards
-
-            filteredProducts.forEach(producto => {
-                const btn = document.getElementById(`insc-${producto.id}`)
+            filtered.forEach(c => {
+                const btn = document.getElementById(`add-${c.id}`)
                 if (btn) {
-                    btn.addEventListener('click', () => {
-                        inscribirClase(producto.id)
-                    })
+                    btn.addEventListener('click', () => addToCart(p.id))
                 }
             })
         })

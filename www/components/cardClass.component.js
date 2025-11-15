@@ -7,7 +7,7 @@ export const cardClassComponent = (data) => {
                     <div>
                         <h5 class="card-title">${data.title}</h5>
                         <p class="card-text">${data.desc}</p>
-                        <p class="fw-bold">Duración: ${data.time}</p>
+                        <p class="fw-bold">Duración: ${data.tiempo}</p>
                         <p class="fw-bold">$${data.precio}</p>
                     </div>
 

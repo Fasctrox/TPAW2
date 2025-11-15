@@ -9,7 +9,7 @@ export async function obtenerDatos(req, res) {
         if (productos.length > 0) {
             res.json(productos)
         } else {
-            res.status(400).json({ mensaje: 'No se encontro' })
+            res.status(404).json({ mensaje: 'No se encontro' })
         }
 
     } catch (e) {

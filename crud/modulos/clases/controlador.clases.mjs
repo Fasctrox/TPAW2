@@ -9,7 +9,7 @@ export async function obtenerDatos(req, res) {
         if (clases.length > 0) {
             res.json(clases)
         } else {
-            res.status(400).json({ mensaje: 'No se encontro las clases' })
+            res.status(404).json({ mensaje: 'No se encontro las clases' })
         }
 
     } catch (e) {

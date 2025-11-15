@@ -11,46 +11,73 @@ window.addEventListener('DOMContentLoaded', async () => {
         return;
     }
 
-    // cargar datos completos desde JSON para mostrar títulos, imágenes, etc.
-    const response = await fetch('/fitstore/productos');
-    if (!response.ok) throw new Error('Error al obtener productos desde la API');
-    const productosData = await response.json();
+    try {
 
-    // 🔎 Por cada item del carrito, buscamos el producto correspondiente
-    const items = cart.map(item => {
-        const producto = productosData.find(p => p.id === item.id);
-        if (!producto) return '';
+        const [productosResponse, clasesResponse] = await Promise.all([
+            fetch('/fitstore/productos'),
+            fetch('/fitstore/clases')
+        ])
 
-        return `
-        <div class="card mb-3 p-3">
-          <div class="row align-items-center">
-            <div class="col-md-2">
-              <img src="${producto.img}" alt="${producto.title}" class="img-fluid">
-            </div>
-            <div class="col-md-6">
-              <h5>${producto.title}</h5>
-              <p>${producto.descripcion}</p>
-              <p class="fw-bold">$${producto.precio}</p>
-            </div>
-            <div class="col-md-4 text-end">
-              <p>Cantidad: ${item.cantidad}</p>
-              <button class="btn btn-danger btn-sm" data-id="${item.id}" data-tipo="${item.tipo}">Eliminar</button>
-            </div>
-          </div>
-        </div>
-      `;
-    }).join('');
+        if (!productosResponse.ok) throw new Error('Error al obtener productos desde la API')
+        if (!clasesResponse.ok) throw new Error('Error al obtener clases desde la API')
 
-    cartContainer.innerHTML = items;
+        const productosData = await productosResponse.json()
+        const clasesData = await clasesResponse.json()
+        
+        const items = cart.map(item => {
+            let data = null;
+            let esClase = false;
+            let cantidadMostrar = item.cantidad;
 
-    // NUEVO: listeners para eliminar un producto
-    document.querySelectorAll('.btn-danger.btn-sm').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const id = parseInt(btn.getAttribute('data-id'));
-            const tipo = btn.getAttribute('data-tipo');
-            eliminarItemCarrito(id, tipo);
+            if (item.tipo === 'producto') {
+                data = productosData.find(p => p.id === item.id);
+            } else if (item.tipo === 'clase') {
+                data = clasesData.find(c => c.id === item.id);
+                esClase = true;
+                cantidadMostrar = 'Inscrito'; // Las clases se suelen mostrar como 1 o "inscrito"
+            }
+
+            // Si no se encuentra el dato (ej: producto eliminado de la BD)
+            if (!data) return '';
+
+            // Plantilla de renderizado genérica
+            return `
+                <div class="card mb-3 p-3 ${esClase ? 'border-primary' : ''}">
+                    <div class="row align-items-center">
+                        <div class="col-md-2">
+                            <img src="${data.img}" alt="${data.title}" class="img-fluid">
+                        </div>
+                        <div class="col-md-6">
+                            <span class="badge bg-secondary mb-2">${esClase ? 'Clase' : 'Producto'}</span>
+                            <h5>${data.title}</h5>
+                            <p>${data.descripcion}</p>
+                            <p class="fw-bold">$${data.precio}</p>
+                        </div>
+                        <div class="col-md-4 text-end">
+                            <p>Cantidad: ${cantidadMostrar}</p>
+                            <button class="btn btn-danger btn-sm" data-id="${item.id}" data-tipo="${item.tipo}">Eliminar</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+
+        cartContainer.innerHTML = items;
+
+        document.querySelectorAll('.btn-danger.btn-sm').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Aseguramos que el id es un número para la función eliminarItemCarrito
+                const id = parseInt(btn.getAttribute('data-id'));
+                const tipo = btn.getAttribute('data-tipo');
+                eliminarItemCarrito(id, tipo);
+            });
         });
-    });
+
+    } catch (e) {
+        console.error('Error al cargar datos del carrito:', e);
+        cartContainer.innerHTML = '<p class="text-danger text-center mt-4">Hubo un error al cargar los datos. Intente más tarde.</p>';
+    }
+
 });
 
 // NUEVO: vaciar carrito completo
