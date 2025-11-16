@@ -5,6 +5,11 @@ const formAlta = document.getElementById('form-alta');
 const formEditar = document.getElementById('form-editar');
 const formBuscar = document.getElementById('form-buscar');
 const resultadoBusqueda = document.getElementById('resultado-busqueda');
+const API_USUARIOS = 'http://localhost:3000/fitstore/usuarios';
+const tablaUsuarios = document.getElementById('tabla-usuarios');
+const formUsuarios = document.getElementById('form-usuarios');
+const formTitle = document.getElementById('form-usuarios-title');
+const formSubmit = document.getElementById('form-usuarios-submit');
 
 
 // === BUSCAR PRODUCTO POR ID ===
@@ -143,6 +148,7 @@ window.addEventListener('DOMContentLoaded', () => {
     
 });
 
+//=== LOGOUT: Borrado de access_token ===
 async function handleLogout() {
     try {
         const response = await fetch('/fitstore/logout', {
@@ -163,5 +169,85 @@ async function handleLogout() {
     }
 }
 
+// === CRUD USUARIOS: CARGAR ===
+async function cargarUsuarios() {
+    const res = await fetch(API_USUARIOS);
+    if (res.status === 401) {
+        handleLogout(); 
+        return;
+    }
+    const usuarios = await res.json();
+
+    tablaUsuarios.innerHTML = usuarios.map(u => `
+        <tr>
+            <td>${u.id}</td>
+            <td>${u.nombre}</td>
+            <td>${u.email}</td>
+            <td>${u.role}</td>
+            <td>
+                <button onclick="llenarFormularioUsuario(${u.id})">✏️</button>
+                <button onclick="eliminarUsuario(${u.id})">🗑️</button>
+            </td>
+        </tr>
+    `).join('');
+}
+
+// === CRUD USUARIOS: ALTA/EDICIÓN ===
+formUsuarios.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const id = document.getElementById('usuario-id').value;
+    const datos = Object.fromEntries(new FormData(formUsuarios));
+    const metodo = id ? 'PUT' : 'POST';
+    const url = id ? `${API_USUARIOS}/${id}` : `${API_USUARIOS}/registro`;
+
+    if (metodo === 'PUT' && !datos.password) {
+        delete datos.password;
+    }
+    
+
+    await fetch(url, {
+        method: metodo,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(datos)
+    });
+
+    formUsuarios.reset();
+    formTitle.textContent = 'Crear Nuevo Usuario/Admin';
+    formSubmit.textContent = 'Guardar Usuario';
+    document.getElementById('usuario-id').value = '';
+    cargarUsuarios();
+});
+
+
+// === CRUD USUARIOS: BAJA ===
+async function eliminarUsuario(id) {
+    if (!confirm('¿Seguro que querés eliminar este usuario?')) return;
+
+    await fetch(`${API_USUARIOS}/${id}`, { method: 'DELETE' });
+    cargarUsuarios();
+}
+
+// === CRUD USUARIOS: LLENAR FORMULARIO (para edición) ===
+async function llenarFormularioUsuario(id) {
+    const res = await fetch(`${API_USUARIOS}/${id}`);
+    if (!res.ok) { alert('No se pudo obtener el usuario'); return; }
+
+    const u = await res.json();
+    
+    // Configurar el formulario para edición
+    document.getElementById('usuario-id').value = u.id;
+    formUsuarios.elements['nombre'].value = u.nombre;
+    formUsuarios.elements['email'].value = u.email;
+    formUsuarios.elements['role'].value = u.role;
+    document.getElementById('usuario-password').required = false;
+    
+    formTitle.textContent = `Editar Usuario: ${u.nombre}`;
+    formSubmit.textContent = 'Guardar Cambios';
+
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+
 // === INICIALIZAR ===
-cargarProductos();
+cargarProductos()
+cargarUsuarios()

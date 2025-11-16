@@ -34,13 +34,11 @@ window.addEventListener('DOMContentLoaded', async () => {
             } else if (item.tipo === 'clase') {
                 data = clasesData.find(c => c.id === item.id);
                 esClase = true;
-                cantidadMostrar = 'Inscrito'; // Las clases se suelen mostrar como 1 o "inscrito"
+                cantidadMostrar = 'Inscrito';
             }
 
-            // Si no se encuentra el dato (ej: producto eliminado de la BD)
             if (!data) return '';
 
-            // Plantilla de renderizado genérica
             return `
                 <div class="card mb-3 p-3 ${esClase ? 'border-primary' : ''}">
                     <div class="row align-items-center">
@@ -66,7 +64,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         document.querySelectorAll('.btn-danger.btn-sm').forEach(btn => {
             btn.addEventListener('click', () => {
-                // Aseguramos que el id es un número para la función eliminarItemCarrito
+
                 const id = parseInt(btn.getAttribute('data-id'));
                 const tipo = btn.getAttribute('data-tipo');
                 eliminarItemCarrito(id, tipo);
@@ -80,13 +78,11 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 });
 
-// NUEVO: vaciar carrito completo
 clearCartBtn?.addEventListener('click', () => {
     clearCart();
     window.location.reload();
 });
 
-// NUEVO: eliminar un solo item
 const eliminarItemCarrito = (id, tipo) => {
     let cart = getCart();
     cart = cart.filter(item => !(item.id === id && item.tipo === tipo));

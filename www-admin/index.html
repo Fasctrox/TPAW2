@@ -149,6 +149,66 @@
       </div>
     </div>
 
+
+    <!--#########################################################-->
+    <!-- Formulario de  usuarios -->
+
+     <h2 class="mt-5 mb-3">Gestión de Administradores</h2>
+
+    <div class="card shadow-sm mb-5">
+      <div class="card-header bg-info text-white">
+        <h5 class="mb-0">Lista de Usuarios y Administradores</h5>
+      </div>
+      <div class="card-body table-responsive">
+        <table class="table table-striped align-middle text-center">
+          <thead class="table-dark">
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Email</th>
+              <th>Rol</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tabla-usuarios"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card shadow-sm">
+      <div class="card-header bg-success text-white">
+        <h5 class="mb-0" id="form-usuarios-title">Crear Nuevo Usuario/Admin</h5>
+      </div>
+      <div class="card-body">
+        <form id="form-usuarios" class="row g-3">
+          <input type="hidden" name="id" id="usuario-id">
+          <div class="col-md-6">
+            <label class="form-label">Nombre</label>
+            <input type="text" name="nombre" class="form-control" required>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Email</label>
+            <input type="email" name="email" class="form-control" required>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Contraseña (Nueva/Cambiar)</label>
+            <input type="password" name="password" class="form-control" id="usuario-password">
+            <small class="form-text text-muted">Dejar vacío para no cambiar la contraseña.</small>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Rol</label>
+            <select name="role" class="form-select" required>
+              <option value="cliente">Cliente</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-success w-100" id="form-usuarios-submit">Guardar Usuario</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
   </div>
 
   <script src="index.js"></script>

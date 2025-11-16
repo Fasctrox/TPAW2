@@ -30,3 +30,66 @@ export async function obtenerUsuario(email){
         throw new Error('Error de base de datos durante el login')
     }
 }
+
+/*
+export async function obtenerTodosUsuarios() {
+    try {
+        const query = 'SELECT id, email, nombre, role FROM usuarios ORDER BY id';
+        const resultado = await pool.query(query);
+        return resultado.rows;
+    } catch (e) {
+        console.error("Error al obtener todos los usuarios:", e);
+        throw e;
+    }
+}
+
+export async function obtenerUsuarioPorId(id) {
+    try {
+        const query = 'SELECT id, email, nombre, role FROM usuarios WHERE id=$1';
+        const resultado = await pool.query(query, [id]);
+        return resultado.rows[0];
+    } catch (e) {
+        console.error("Error al obtener usuario por ID:", e);
+        throw e;
+    }
+}
+
+export async function actualizarUsuario(id, nombre, email, passwordHash, role) {
+    let query;
+    let params;
+
+    if (passwordHash) {
+        query = `
+            UPDATE usuarios 
+            SET nombre=$2, email=$3, password_hash=$4, role=$5
+            WHERE id=$1 RETURNING id`;
+        params = [id, nombre, email, passwordHash, role];
+    } else {
+        query = `
+            UPDATE usuarios 
+            SET nombre=$2, email=$3, role=$4
+            WHERE id=$1 RETURNING id`;
+        params = [id, nombre, email, role];
+    }
+    
+    try {
+        const resultado = await pool.query(query, params);
+        return resultado.rowCount > 0;
+    } catch (e) {
+        console.error("Error al actualizar usuario:", e);
+        throw e;
+    }
+}
+
+export async function eliminarUsuario(id) {
+    try {
+        const query = 'DELETE FROM usuarios WHERE id=$1';
+        const resultado = await pool.query(query, [id]);
+        return resultado.rowCount > 0;
+    } catch (e) {
+        console.error("Error al eliminar usuario:", e);
+        throw e;
+    }
+}
+
+*/

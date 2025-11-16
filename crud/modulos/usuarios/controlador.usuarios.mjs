@@ -93,3 +93,67 @@ export function logoutUsuario(req, res) {
     
     res.status(200).json({ mensaje: 'Sesión cerrada exitosamente.' });
 }
+/*
+export async function obtenerTodos(req, res) {
+    try {
+        const usuarios = await modelo.obtenerTodosUsuarios();
+        res.json(usuarios);
+    } catch (e) {
+        res.status(500).json({ mensaje: 'Error al obtener usuarios.' });
+    }
+}
+
+
+export async function obtenerUsuario(req, res) {
+    const { id } = req.params;
+    try {
+        const usuario = await modelo.obtenerUsuarioPorId(id);
+        if (usuario) {
+            res.json(usuario);
+        } else {
+            res.status(404).json({ mensaje: 'Usuario no encontrado.' });
+        }
+    } catch (e) {
+        res.status(500).json({ mensaje: 'Error al obtener usuario.' });
+    }
+}
+
+export async function modificarUsuario(req, res) {
+    const { id } = req.params;
+    const { nombre, email, password, role } = req.body;
+    let passwordHash = null;
+
+    try {
+        if (password) {
+            const saltRounds = 10;
+            passwordHash = await bcrypt.hash(password, saltRounds);
+        }
+        
+        const actualizado = await modelo.actualizarUsuario(id, nombre, email, passwordHash, role);
+
+        if (actualizado) {
+            res.json({ mensaje: 'Usuario actualizado con éxito.' });
+        } else {
+            res.status(404).json({ mensaje: 'Usuario no encontrado para actualizar.' });
+        }
+    } catch (e) {
+        res.status(500).json({ mensaje: 'Error al actualizar usuario.' });
+    }
+}
+
+export async function eliminarUsuario(req, res) {
+    const { id } = req.params;
+    try {
+        const eliminado = await modelo.eliminarUsuario(id);
+        if (eliminado) {
+            res.json({ mensaje: 'Usuario eliminado con éxito.' });
+        } else {
+            res.status(404).json({ mensaje: 'Usuario no encontrado para eliminar.' });
+        }
+    } catch (e) {
+        res.status(500).json({ mensaje: 'Error al eliminar usuario.' });
+    }
+        
+}
+
+*/

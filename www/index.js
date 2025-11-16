@@ -13,7 +13,6 @@ window.addEventListener('DOMContentLoaded', () => {
     const logoutButton = document.getElementById('logoutBtn');
     
     if (logoutButton) {
-        // Adjuntamos la función que borra el token del backend y redirige
         logoutButton.addEventListener('click', handleLogout); 
     }
 
