@@ -1,5 +1,6 @@
 import { getSessionData, deleteSessionData } from './utils/sessionStorageController.js';
 import { navbarComponent } from "./components/navbar.component.js"
+import { handleLogout } from './utils/logoutFunction.mjs';
 
 window.addEventListener('DOMContentLoaded', () => {
     const user = getSessionData('userLogged');
@@ -7,6 +8,13 @@ window.addEventListener('DOMContentLoaded', () => {
     const navContainer = document.querySelector('header')
     if (navContainer){
         navContainer.innerHTML = navbarComponent(user);
+    }
+
+    const logoutButton = document.getElementById('logoutBtn');
+    
+    if (logoutButton) {
+        // Adjuntamos la función que borra el token del backend y redirige
+        logoutButton.addEventListener('click', handleLogout); 
     }
 
     document.getElementById('logoutBtn')?.addEventListener('click', () => {

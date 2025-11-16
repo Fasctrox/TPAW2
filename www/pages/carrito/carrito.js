@@ -23,7 +23,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         const productosData = await productosResponse.json()
         const clasesData = await clasesResponse.json()
-        
+
         const items = cart.map(item => {
             let data = null;
             let esClase = false;
@@ -93,3 +93,4 @@ const eliminarItemCarrito = (id, tipo) => {
     setCart(cart);
     window.location.reload();
 };
+

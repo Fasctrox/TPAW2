@@ -133,5 +133,35 @@ formEditar.addEventListener('submit', async (e) => {
   cargarProductos();
 });
 
+// === LOGOUT ===
+window.addEventListener('DOMContentLoaded', () => {
+    const logoutButton = document.getElementById('logoutBtn');
+    
+    if (logoutButton) {
+        logoutButton.addEventListener('click', handleLogout);
+    }
+    
+});
+
+async function handleLogout() {
+    try {
+        const response = await fetch('/fitstore/logout', {
+            method: 'GET' 
+        });
+
+        if (response.ok) {
+            sessionStorage.clear(); 
+            
+            window.location.href = '/fitstore/auth/login/login.html'; 
+        } else {
+            console.error('Error al cerrar sesión:', await response.json());
+            alert('Error al cerrar sesión. Intente de nuevo.');
+        }
+    } catch (e) {
+        console.error('Error de red al intentar cerrar sesión:', e);
+        alert('Error de red. No se pudo cerrar la sesión.');
+    }
+}
+
 // === INICIALIZAR ===
 cargarProductos();

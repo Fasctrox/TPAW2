@@ -36,6 +36,17 @@ CREATE TABLE categorias (
     descripcion TEXT
 );
 
+-- ===========================================
+-- Tabla: usuarios
+-- ===========================================
+CREATE TABLE usuarios (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    nombre VARCHAR(100) NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    role VARCHAR(50) NOT NULL
+);
+
 
 -- ===========================================
 -- Carga tabla clases
@@ -67,3 +78,5 @@ INSERT INTO categorias (nombre, descripcion) VALUES
 ('Clases', 'Funcional, GAP, Salsa, Crossfit, Bachata y más.'),
 ('Productos alimenticios', 'Proteínas, creatina, pre-entrenos y más suplementos.'),
 ('Ropa deportiva', 'Ropa cómoda, funcional y con estilo para entrenar.');
+
+

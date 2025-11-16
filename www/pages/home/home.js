@@ -7,4 +7,5 @@ window.addEventListener('DOMContentLoaded', () => {
         containerSelector: '#cardContainer',
         cardComponent: cardComponent
     })
+
 })
