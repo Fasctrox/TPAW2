@@ -31,7 +31,7 @@ export async function obtenerUsuario(email){
     }
 }
 
-/*
+
 export async function obtenerTodosUsuarios() {
     try {
         const query = 'SELECT id, email, nombre, role FROM usuarios ORDER BY id';
@@ -92,4 +92,3 @@ export async function eliminarUsuario(id) {
     }
 }
 
-*/

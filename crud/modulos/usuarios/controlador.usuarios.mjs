@@ -93,7 +93,7 @@ export function logoutUsuario(req, res) {
     
     res.status(200).json({ mensaje: 'Sesión cerrada exitosamente.' });
 }
-/*
+
 export async function obtenerTodos(req, res) {
     try {
         const usuarios = await modelo.obtenerTodosUsuarios();
@@ -156,4 +156,3 @@ export async function eliminarUsuario(req, res) {
         
 }
 
-*/

@@ -1,11 +1,11 @@
 const API_URL = 'http://localhost:3000/fitstore/productos';
-
 const tabla = document.getElementById('tabla-productos');
 const formAlta = document.getElementById('form-alta');
 const formEditar = document.getElementById('form-editar');
 const formBuscar = document.getElementById('form-buscar');
 const resultadoBusqueda = document.getElementById('resultado-busqueda');
-const API_USUARIOS = 'http://localhost:3000/fitstore/usuarios';
+
+const API_USUARIOS = 'http://localhost:3000/fitstore/usuarios-admin';
 const tablaUsuarios = document.getElementById('tabla-usuarios');
 const formUsuarios = document.getElementById('form-usuarios');
 const formTitle = document.getElementById('form-usuarios-title');
