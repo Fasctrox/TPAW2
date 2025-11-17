@@ -79,4 +79,11 @@ INSERT INTO categorias (nombre, descripcion) VALUES
 ('Productos alimenticios', 'Proteínas, creatina, pre-entrenos y más suplementos.'),
 ('Ropa deportiva', 'Ropa cómoda, funcional y con estilo para entrenar.');
 
+-- ===========================================
+-- Carga tabla usuarios
+-- ===========================================
+INSERT INTO usuarios (email, nombre, password_hash, role) VALUES
+('admin@example.com', 'admin', '$2b$10$fZ6r75OJWX2UQVWHH88UDOEOpVb5Zmudko8485l3xTqCUqRWHjp/e', 'admin'),
+('usuario1@example.com', 'Usuario1', "$2b$10$4O.7g1hFLik3/MG0iSvqju0D39CaCiyJL2UVULBMmvVrNESsCx.Di0", 'cliente');
+
 
