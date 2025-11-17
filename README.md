@@ -101,4 +101,69 @@ Estas rutas aplican el *middleware* `verificarTokenAPI` y `verificarRolAdmin`.
 
 ***
 
+## 📋 Esquemas de Respuesta (JSON)
+
+### 1. Respuesta de Login (`POST /fitstore/login`)
+
+En caso de éxito (HTTP 200), el servidor establece la cookie `access_token` y devuelve la ruta de redirección.
+
+```json
+{
+  "mensaje": "Inicio de sesion exitoso",
+  "redirect": "/fitstore/admin" 
+}
+
+```
+
+### 2. Utilizado por GET /fitstore/usuarios (devuelve un array) y GET /fitstore/usuarios/:id
+
+
+```json
+
+[
+  {
+    "id": 1,
+    "nombre": "admin",
+    "email": "admin@example.com",
+    "role": "admin"
+  }
+]
+
+```
+
+### 3. Utilizado por GET /fitstore/productos (devuelve un array) y GET /fitstore/productos/:id.
+
+```json
+
+[
+  {
+    "id": 101,
+    "img": "/assets/img/proteina.webp",
+    "title": "Proteína Whey Premium",
+    "descripcion": "Suplemento de alta pureza para recuperación.",
+    "precio": 5500.00,
+    "categoria_id": 2
+  }
+]
+
+```
+
+### 4. Utilizado por GET /fitstore/clases (devuelve un array) y GET /fitstore/clases/:id.
+
+```json
+
+[
+  {
+    "id": 201,
+    "img": "/assets/img/crossfit.webp",
+    "title": "Crossfit Básico",
+    "desc": "Entrenamiento funcional de alta intensidad.",
+    "time": "1 hora",
+    "precio": 1200.00
+  }
+]
+
+```
+
+
 
